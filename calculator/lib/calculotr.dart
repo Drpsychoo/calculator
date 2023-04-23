@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+//Define a stateful widget for the calculator
 class calculator extends StatefulWidget {
   const calculator({super.key});
 
@@ -10,14 +11,18 @@ class calculator extends StatefulWidget {
   State<calculator> createState() => _calculatorState();
 }
 
+//Define the state for the calculator
 class _calculatorState extends State<calculator> {
-  //delecare of equation
+  //Declare variables to store the equation, result, and expression
+
   String equation = "0";
   String result = "0";
   String expression = " ";
+//Declare font sizes for the equation and result display
 
   double equationFontSize = 38.0;
   double resultFontSize = 48.0;
+//Method to handle button press
 
   buttonPressed(String buttonText) {
     setState(() {
@@ -35,6 +40,8 @@ class _calculatorState extends State<calculator> {
         equation = equation.substring(0, equation.length - 1);
       } else if (buttonText == "=") {
         //https://pub.dev/packages/math_expressions/install and install dependencies into pubspec.yaml
+//Evaluate the expression using the math_expressions library
+
         double equationFontSize = 38.0;
         double resultFontSize = 48.0;
         expression = equation;
@@ -58,6 +65,7 @@ class _calculatorState extends State<calculator> {
       }
     });
   }
+//Method to build calculator buttons
 
   Widget buildButton(
       String buttonText, double buttonheight, Color buttonColor) {
@@ -77,6 +85,7 @@ class _calculatorState extends State<calculator> {
       ),
     );
   }
+//Build the calculator UI
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +99,8 @@ class _calculatorState extends State<calculator> {
       ),
       body: Column(
         children: [
+//Display the equation
+
           Container(
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -98,6 +109,8 @@ class _calculatorState extends State<calculator> {
               style: TextStyle(fontSize: equationFontSize),
             ),
           ),
+//Display the result
+
           Container(
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -106,7 +119,11 @@ class _calculatorState extends State<calculator> {
               style: TextStyle(fontSize: resultFontSize),
             ),
           ),
+//Add a divider its divide your screen inot half
+
           const Expanded(child: Divider()),
+//Create the calculator buttons
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
